@@ -1,3 +1,4 @@
+import 'package:bruno/bruno.dart';
 import 'package:bruno/src/components/dialog/brn_dialog.dart';
 import 'package:bruno/src/theme/brn_theme.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,10 @@ class BrnMiddleInputDialog {
   final int maxLength;
 
   /// 取消操作标题，默认 '取消'
-  final String cancelText;
+  final String? cancelText;
 
   /// 确定操作标题，默认 '确定'
-  final String confirmText;
+  final String? confirmText;
 
   /// 点击确定时的回调，参数为输入框中的字符
   final void Function(String value)? onConfirm;
@@ -58,11 +59,15 @@ class BrnMiddleInputDialog {
 
   /// 点击取消/确认按钮之后，是否自动关闭弹窗，默认为 true，关闭
   BrnDialogConfig? themeData;
+  
+  /// 键盘类型
+  final TextInputType? keyboardType;
 
   BrnMiddleInputDialog(
       {this.title,
       this.message,
       this.hintText,
+      this.keyboardType,
       this.maxLength = 20,
       this.maxLines,
       this.minLines: 1,
@@ -70,8 +75,8 @@ class BrnMiddleInputDialog {
       this.inputEditingController,
       this.inputFormatters,
       this.textInputAction = TextInputAction.newline,
-      this.cancelText = '取消',
-      this.confirmText = '确定',
+      this.cancelText,
+      this.confirmText,
       this.onConfirm,
       this.onCancel,
       this.dismissOnActionsTap = true,
@@ -126,6 +131,7 @@ class BrnMiddleInputDialog {
       controller: inputEditingController,
       maxLines: maxLines ?? minLines,
       minLines: minLines,
+      keyboardType: keyboardType,
       //光标颜色
       cursorColor:
           BrnThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
@@ -172,8 +178,8 @@ class BrnMiddleInputDialog {
       ),
     ));
     return BrnDialogManager.showConfirmDialog(context,
-        cancel: cancelText,
-        confirm: confirmText,
+        cancel: cancelText ?? BrnIntl.of(context).localizedResource.cancel,
+        confirm: confirmText ?? BrnIntl.of(context).localizedResource.ok,
         title: title,
         barrierDismissible: barrierDismissible,
         themeData: themeData,

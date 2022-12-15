@@ -3,6 +3,10 @@ library bruno;
 // 主题
 export 'src/theme/brn_theme.dart';
 
+// l10n
+export 'src/l10n/brn_intl.dart';
+export 'src/l10n/brn_resources.dart';
+
 //工具类 和 资源
 export 'src/components/toast/brn_toast.dart';
 export 'src/utils/brn_tools.dart';
@@ -22,6 +26,7 @@ export 'src/components/tabbar/bottom/brn_bottom_tab_bar_main.dart';
 export 'src/components/tabbar/bottom/brn_bottom_tab_bar_item.dart';
 
 //弹框
+export 'src/components/dialog/brn_safe_dialog.dart';
 export 'src/components/dialog/brn_share_dialog.dart';
 export 'src/components/dialog/brn_enhance_operation_dialog.dart';
 export 'src/components/dialog/brn_scrollable_text_dialog.dart';
